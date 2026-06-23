@@ -1186,4 +1186,15 @@ nav {
 .sub-title {
     letter-spacing: 3px;
 }
+.cursor {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease;
+}
 /* end contact */
