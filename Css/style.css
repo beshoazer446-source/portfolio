@@ -12,12 +12,22 @@
     --bg2 :#050505;
     --gray: #8a94a8;
     --border: rgba(255,255,255,0.06);
+    --nav-bg: rgba(8, 11, 16, 0.85);
+}
+[data-theme="light"] {
+    --bg: #ffffff;
+    --accent: #087f9f;
+    --white: #101820;
+    --bg2: #f1f4f6;
+    --gray: #596572;
+    --border: rgba(16, 24, 32, 0.14);
+    --nav-bg: rgba(255, 255, 255, 0.9);
 }
 html {
     scroll-behavior: smooth;
 }
 body {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DM Mono', Tahoma, sans-serif;
     background-color: var(--bg);
     color: var(--white);
     overflow-x: hidden;
@@ -41,7 +51,7 @@ nav {
     left: 0;
     right: 0;
     z-index: 100;
-    background-color: rgba(8, 11, 16, 0.85);
+    background-color: var(--nav-bg);
     border-bottom: 1px solid var(--border);
     padding: 24px 60px;
     backdrop-filter: blur(20px);
@@ -88,6 +98,40 @@ nav {
 .nav-cta:hover {
     background-color: var(--accent);
     color: var(--bg);
+}
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--gray);
+    padding: 9px 12px;
+    cursor: pointer;
+    font: 500 10px 'DM Mono', monospace;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+.theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+.theme-toggle i {
+    color: var(--accent);
+}
+.language-toggle {
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--gray);
+    padding: 9px 11px;
+    cursor: pointer;
+    font: 500 10px 'DM Mono', Tahoma, sans-serif;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+.language-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
 }
 .menu-checkbox {
     display: none;
@@ -161,6 +205,13 @@ nav {
         padding: 8px 15px;
         font-size: 10px;
     }
+    .theme-toggle {
+        margin-left: auto;
+        margin-right: 14px;
+    }
+    .language-toggle {
+        margin-right: 10px;
+    }
     .nav-links li {
         width: 100%;
         transition: 0.3s;
@@ -182,6 +233,40 @@ nav {
         letter-spacing: 4px;
         padding-left: 20px;
     }
+}
+[dir="rtl"] {
+    text-align: right;
+}
+[dir="rtl"] .nav-links {
+    letter-spacing: 0;
+}
+[dir="rtl"] .nav-links a:hover {
+    letter-spacing: 0;
+    padding-left: 0;
+    padding-right: 20px;
+}
+[dir="rtl"] .hero-tag::before {
+    order: 2;
+}
+[dir="rtl"] .hero-action,
+[dir="rtl"] .contact-links,
+[dir="rtl"] .footer-bottom {
+    direction: rtl;
+}
+[dir="rtl"] .about-label-wrapper {
+    flex-direction: row-reverse;
+}
+[dir="rtl"] .nav-links {
+    left: auto;
+    right: 100%;
+}
+[dir="rtl"] .menu-checkbox:checked ~ .nav-links {
+    left: auto;
+    right: 0;
+}
+[dir="rtl"] .nav-links {
+    border-right: 0;
+    border-left: 1px solid var(--border);
 }
 /* end header */
 /* start landing */
@@ -760,6 +845,12 @@ nav {
 .featured-card {
     background: linear-gradient(180deg, rgba(25, 200, 250, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
 }
+[data-theme="light"] .skill-card {
+    background-color: rgba(255, 255, 255, 0.72);
+}
+[data-theme="light"] .featured-card {
+    background: linear-gradient(180deg, rgba(8, 127, 159, 0.08) 0%, rgba(255, 255, 255, 0.72) 100%);
+}
 .card-icon {
     font-size: 28px;
     color: var(--accent);
@@ -814,6 +905,10 @@ nav {
 .accent-tag {
     border-color: rgba(25, 200, 250, 0.3);
     color: #fff;
+}
+[data-theme="light"] .accent-tag {
+    color: var(--accent);
+    border-color: rgba(8, 127, 159, 0.3);
 }
 .card-footer {
     margin-top: 30px;
@@ -1061,7 +1156,8 @@ nav {
 /* end project */
 /* start contact */
 .git-in-touch {
-    background-color: #050505;
+    background-color: var(--bg2);
+    border-top: 1px solid var(--border);
     padding: 100px 20px 40px;
     text-align: center;
 }
@@ -1093,7 +1189,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 35px;
+    gap: 16px;
     margin-bottom: 40px;
 }
 .link-item {
@@ -1105,6 +1201,7 @@ nav {
     text-transform: uppercase;
     font-family: 'DM Mono', monospace;
     font-size: 13px;
+    min-width: 145px;
     transition: 0.3s ease;
     -webkit-transition: 0.3s ease;
     -moz-transition: 0.3s ease;
@@ -1131,7 +1228,7 @@ nav {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
     color: var(--gray);
-    background-color: var(--bg);
+    background-color: transparent;
 }
 .heart {
     color: #ff4d4d;
@@ -1139,7 +1236,8 @@ nav {
 }
 
 .dev-tag {
-    color: #888;
+    color: var(--gray);
+    opacity: 0.8;
 }
 @media (max-width: 992px) {
     .main-title {
@@ -1168,7 +1266,7 @@ nav {
     .contact-links {
         flex-direction: column;
         align-items: stretch;
-        max-width: 250px;
+        max-width: 280px;
         margin: 0 auto 60px;
     }
 
