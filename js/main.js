@@ -1,3 +1,4 @@
+
 const menuCheckbox = document.getElementById('menu-toggle');
 const navLinks = document.querySelectorAll('.nav-links a');
 const cursor = document.querySelector('.cursor');
@@ -5,7 +6,7 @@ const themeToggle = document.querySelector('.theme-toggle');
 const themeIcon = themeToggle?.querySelector('i');
 const themeLabel = themeToggle?.querySelector('span');
 const languageToggle = document.querySelector('.language-toggle');
-
+ 
 const translations = {
     en: {
         'nav.about': 'ABOUT', 'nav.skills': 'SKILLS', 'nav.projects': 'PROJECTS', 'nav.contact': 'CONTACT',
@@ -20,7 +21,7 @@ const translations = {
         'skills.visuals': 'Visuals & Structure', 'skills.competitive': 'Competitive Programming', 'skills.dataStructures': 'Data Structures', 'skills.problemSolving': 'Problem Solving',
         'skills.logic': 'Logic & Efficiency', 'skills.tools': 'Tools & Environment', 'skills.responsive': 'Responsive Design', 'skills.performance': 'Web Performance', 'skills.workflow': 'Workflow & Optimization',
         'projects.label': 'Projects', 'projects.title': 'Selected <span class="accent-text">Projects.</span>', 'project.bookingCategory': 'Booking System',
-        'project.filtering': 'Filtering Logic', 'project.bookingDescription': 'An advanced filtering system for searching and sorting residential units by price and type.', 'project.ecommerceCategory': '>E-Commerce', 'project.ecommerceDescription': 'A complete product management system with a shopping cart and dynamic order totals.', 'project.localStorage': 'Local Storage', 'project.dom': 'DOM Manipulation', 'project.tasksCategory': 'Task Management', 'project.tasksDescription': 'A daily task manager that lets users add, edit, and delete tasks with local data storage.',
+        'project.filtering': 'Filtering Logic', 'project.bookingDescription': 'An advanced filtering system for searching and sorting residential units by price and type.', 'project.ecommerceCategory': '>E-Commerce', 'project.ecommerceDescription': 'A complete product management system with a shopping cart and dynamic order totals.', 'project.localStorage': 'Local Storage', 'project.dom': 'DOM Manipulation', 'project.tasksCategory': 'Task Management', 'project.tasksDescription':  'A daily task manager that lets users add, edit, and delete tasks with local data storage.',
         'footer.label': 'Get In Touch', 'footer.title': 'Let\'s <span class="accent-text">Work</span><br>Together.', 'footer.description': 'Have a project in mind or just want to say hi?<br>My inbox is always open.', 'footer.email': 'Email Me'
     },
     ar: {
@@ -40,7 +41,7 @@ const translations = {
         'footer.label': 'تواصل معي', 'footer.title': 'لنعمل <span class="accent-text">معاً</span><br>على مشروعك.', 'footer.description': 'لديك مشروع في ذهنك أو تريد فقط إلقاء التحية؟<br>صندوق بريدي مفتوح دائماً.', 'footer.email': 'راسلني'
     }
 };
-
+ 
 const setLanguage = (language) => {
     const isArabic = language === 'ar';
     document.documentElement.lang = isArabic ? 'ar' : 'en';
@@ -54,14 +55,14 @@ const setLanguage = (language) => {
         languageToggle.setAttribute('aria-label', isArabic ? 'Switch to English' : 'Switch to Arabic');
     }
 };
-
+ 
 setLanguage(localStorage.getItem('portfolio-language') || 'en');
 languageToggle?.addEventListener('click', () => {
     const nextLanguage = document.documentElement.lang === 'ar' ? 'en' : 'ar';
     setLanguage(nextLanguage);
     localStorage.setItem('portfolio-language', nextLanguage);
 });
-
+ 
 const setTheme = (theme) => {
     const isLight = theme === 'light';
     document.documentElement.dataset.theme = isLight ? 'light' : 'dark';
@@ -72,14 +73,14 @@ const setTheme = (theme) => {
     if (themeIcon) themeIcon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
     if (themeLabel) themeLabel.textContent = isLight ? 'DARK' : 'LIGHT';
 };
-
+ 
 setTheme(localStorage.getItem('portfolio-theme') || 'dark');
 themeToggle?.addEventListener('click', () => {
     const nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
     setTheme(nextTheme);
     localStorage.setItem('portfolio-theme', nextTheme);
 });
-
+ 
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         if (menuCheckbox) menuCheckbox.checked = false;
@@ -95,26 +96,26 @@ window.addEventListener('scroll', () => {
         }
     }
 });
-
+ 
 const scrollBtn = document.createElement('button');
 scrollBtn.innerHTML = '↑';
 scrollBtn.className = 'scroll-top-btn';
 document.body.appendChild(scrollBtn);
-
+ 
 Object.assign(scrollBtn.style, {
     position: 'fixed', bottom: '30px', right: '30px',
     padding: '10px 15px', backgroundColor: '#19c8fa',
     border: 'none', cursor: 'pointer', display: 'none', zIndex: '1000'
 });
-
+ 
 window.addEventListener('scroll', () => {
     scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
 });
-
+ 
 scrollBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-
+ 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("GSAP setup complete!");
     if (cursor && window.innerWidth > 768) {
@@ -124,17 +125,43 @@ document.addEventListener('DOMContentLoaded', () => {
             borderRadius: '50%', backgroundColor: 'transparent',
             left: '-15px', top: '-15px'
         });
-
+ 
         window.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.2, ease: "power2.out" });
+            gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.25, ease: "power2.out" });
         });
-
+ 
         document.querySelectorAll('a, button, .project-card').forEach(el => {
             el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 1.5, backgroundColor: 'rgba(25, 200, 250, 0.2)', duration: 0.3 }));
             el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, backgroundColor: 'transparent', duration: 0.3 }));
         });
     }
-
+ 
     gsap.from(".hero-content", { opacity: 0, y: 50, duration: 1.2, ease: "power3.out", delay: 0.3 });
+ 
+    // ===== حركة الصورة مع الماوس =====
+    const heroImageCircle = document.querySelector('.hero-image-circle');
+    const heroImageContainer = document.querySelector('.hero-image-container');
+    const outerRing = document.querySelector('.circle-border-outer');
+ 
+    if (heroImageCircle && window.innerWidth > 992) {
+        const xTo = gsap.quickTo(heroImageCircle, "x", { duration: 0.25, ease: "power3.out" });
+        const yTo = gsap.quickTo(heroImageCircle, "y", { duration: 0.25, ease: "power3.out" });
+        const rotXTo = gsap.quickTo(heroImageCircle, "rotationX", { duration: 0.25, ease: "power3.out" });
+        const rotYTo = gsap.quickTo(heroImageCircle, "rotationY", { duration: 0.25, ease: "power3.out" });
+        const ringXTo = outerRing ? gsap.quickTo(outerRing, "x", { duration: 0.3, ease: "power3.out" }) : null;
+        const ringYTo = outerRing ? gsap.quickTo(outerRing, "y", { duration: 0.3, ease: "power3.out" }) : null;
+ 
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;  // -1 -> 1
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+ 
+            xTo(x * 18);
+            yTo(y * 18);
+            rotYTo(x * 8);
+            rotXTo(y * -8);
+ 
+            if (ringXTo) { ringXTo(x * 18); ringYTo(y * 18); }
+        });
+    }
 });
-
+ 

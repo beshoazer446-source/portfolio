@@ -155,7 +155,7 @@ nav {
     -o-transition: 0.3s;
 }
 @media (max-width: 768px) {
-    .nav {
+    nav {
         padding: 20px 30px;
     }
     .menu-icon {
@@ -1294,5 +1294,12 @@ nav {
     z-index: 9999;
     mix-blend-mode: difference;
     transition: transform 0.1s ease;
+}
+.hero-image-container {
+    perspective: 1000px;
+}
+.hero-image-circle {
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 /* end contact */
