@@ -1302,4 +1302,9 @@ nav {
     transform-style: preserve-3d;
     will-change: transform;
 }
+@media (max-width: 768px) {
+    nav.scrolled {
+        padding: 10px 20px;
+    }
+}
 /* end contact */

@@ -89,11 +89,7 @@ navLinks.forEach(link => {
 window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
     if (nav) {
-        if (window.scrollY > 50) {
-            nav.style.padding = '15px 60px';
-        } else {
-            nav.style.padding = '24px 60px';
-        }
+        nav.classList.toggle('scrolled', window.scrollY > 50);
     }
 });
  
